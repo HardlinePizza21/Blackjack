@@ -9,7 +9,7 @@ import _ from 'underscore'
  */
 
 let deck         = [];
-const tipos      = ['C','D','H','S'];
+const tipos      = ['C','D','H','S']; //[Clover, Diamonds, Hearts, Spades]
 const especiales = ['A','J','Q','K'];
 
 let puntosJugador = 0,
