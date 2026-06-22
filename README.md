@@ -17,8 +17,6 @@ Quiero hacer un Blackjack online para varios jugadores, todos estan en la misma 
 El juego no va a tener base de datos, solo va a ser un proceso monolito, para hacer una web modular pero no demasiada compleja, y definitivamente no muy escalable pero de desarrollo rapido y sencillo voy a utilizar *vite + react* ademas *socket.io* se combina muy bien con react y asi tendria un monolito, rapido de construir y con un buen mecanismo base para multiplayer.
 
 
-
-
 La plataforma de despliegue mas apropiada me parece netlify, ya que solo es un proyecto de garajes
 
 
