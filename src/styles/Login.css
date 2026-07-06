@@ -1,0 +1,10 @@
+#fileElem{
+    display: none;
+}
+#dragZone{
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    font: bold italic;
+    margin: 10px;
+}

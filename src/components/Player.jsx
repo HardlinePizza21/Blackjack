@@ -1,14 +1,9 @@
-export default function Player(player){
-    
-    const {name, picture, money, state} = player
-
-    return ( 
+export default function Player(name, money, picture){
+    return (
         <div className="playerCard">
-
             <span>{name}</span>
-            {/* Implementar el manejo de imagenes despues <img src={picture}/> */}
-            <span>{money}</span>
-            
+            <span>{money}$</span>
+            {/* Implement picture handling <img src={picture} alt="" /> */}
         </div>
     )
 }

@@ -1,8 +1,6 @@
 import {useState} from 'react'
-import './Game.css'
-import Player from './components/Player.jsx'
+import Player from '../components/Player.jsx'
 import { v4 as uuidv4 } from 'uuid';
-
 
 
 //TODO: Implement players 

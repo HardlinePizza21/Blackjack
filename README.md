@@ -19,4 +19,7 @@ El juego no va a tener base de datos, solo va a ser un proceso monolito, para ha
 
 La plataforma de despliegue mas apropiada me parece netlify, ya que solo es un proyecto de garajes
 
+Recomendaciones:
+![alt text](./documentation/image.png)
+
 

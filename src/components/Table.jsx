@@ -1,4 +1,4 @@
-import './Table.css'
+import '../styles/Table.css'
 import feltTexture from '../assets/green-felt-background-texture-poker-casino-table.avif'
 export default function Table(){
     return(
