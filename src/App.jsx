@@ -12,11 +12,10 @@ function App() {
     setPlayer({name, picture})
     setLogged(true);  
 
-
   }
 
   if(logged){
-    return <Game player={player}/>
+    return <Game playerProfile={player}/>
   }else {
     return <Login onLog={handleLog}/>
   }

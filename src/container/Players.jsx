@@ -1,41 +1,41 @@
-import {useState} from 'react'
+import { useEffect, useState } from 'react'
 import Player from '../components/Player.jsx'
 import { v4 as uuidv4 } from 'uuid';
+import { socket } from '../socket.js';
 
 
-//TODO: Implement players 
-const initialSocketPlayers = [
-    {
-        name: 'Samuel Madrid',
-        money: 1000,
-        picture: '/url',
-        state: 'deciding'
-    },    
-    {
-        name: 'Pachi',
-        money: 1000,
-        picture: '/url',
-        state: 'deciding'
-    },
-    {
-        name: 'Nashe',
-        money: 1000,
-        picture: '/url',
-        state: 'deciding'
-    }
-    
-]
+//TODO: implement newPLayer and leave 
 
 
-export default function Players(){
+export default function Players({initialPlayers}) {
 
-    const [players, setPlayers] = useState(initialSocketPlayers)
-    
+    const [players, setPlayers] = useState(initialPlayers);
+
+    console.log(initialPlayers)
+
+    useEffect(() => {
+
+        socket.on('player has joined', (newPlayers) => {
+            console.log("nuevo jugador se ha unido", newPlayers)
+            setPlayers(newPlayers)
+        })
+
+        socket.on('player has left', (newPlayers) => {
+            setPlayers(newPlayers)
+        })
+
+        return () => {
+            socket.off('player has joined')
+            socket.off('player has left')
+        }
+
+    }, [players])
+
     return (
         <>
-            {players.map((player)=>{
+            {players && players.map((player) => {
                 const uuid = uuidv4();
-                return <Player key={uuid} player={player}/>
+                return <Player key={uuid} {...player} />
             })}
         </>
 

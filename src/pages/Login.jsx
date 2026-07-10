@@ -3,28 +3,23 @@ import { socket } from "../socket"
 import FileUploader from "../components/FileUploader"
 
 
-function Login({onLog}) {
+function Login({ onLog }) {
     const [name, setName] = useState('')
     const [picture, setPicture] = useState(null)
-
     const [statusMessage, setStatusMessage] = useState();
-
     const timer = useRef(null)
 
-
-
-
     function availableName(name) {
-        socket.emit("availableName", name, (response) => {
-            console.log(name, response)
-            if (response) {
-                setStatusMessage('✅ disponible')
-            } else {
-                setStatusMessage('❌ Nombre ocupado')
-            }
-
+        return new Promise((resolve) => {
+            socket.emit("availableName", name, (response) => {
+                if (response) {
+                    setStatusMessage('✅ disponible')
+                } else {
+                    setStatusMessage('❌ Nombre ocupado')
+                }
+                resolve(response)
+            })
         })
-
     }
 
     function handleChange(e) {
@@ -33,7 +28,7 @@ function Login({onLog}) {
         clearTimeout(timer.current)
         timer.current = setTimeout(() => {
             availableName(inputName)
-        }, 1300)
+        }, 500)
     }
 
     return (
@@ -50,25 +45,33 @@ function Login({onLog}) {
                         value={name}
                         type="text"
                     />
-                    {statusMessage && name !== '' && <h6>{statusMessage}</h6>}
+                    {statusMessage && <h6>{statusMessage}</h6>}
 
                     <FileUploader setPicture={setPicture} />
 
-                    <button 
-                        onClick={() => {
-                            // onLog(name, picture)
-                            console.log(picture)
-                        }} 
+                    <button
+                        onClick={async () => {
+                            if (!name) {
+                                setStatusMessage('❌ Debes ingresar un nombre')
+                                return;
+                            }
+
+                            const isAvailable = await availableName(name)
+                            if (!isAvailable) {
+                                setStatusMessage('❌ El nombre ya no está disponible')
+                                return;
+                            }
+
+                            onLog(name, picture)
+                        }}
                     >Jugar!</button>
                 </div>
                 <div id="testimonial-card">
-                    <h5>User name</h5>
-                    {/* <img src="" alt=""/> */}
+                    {name && <h5>{name}</h5>}
                     {picture && (
-                        <img src={picture} alt="player picture" width={250}/>
+                        <img src={URL.createObjectURL(picture)} alt="player picture" width={250} />
                     )}
-                    <img src={URL.createObjectURL(picture)} alt="player picture" width={250}/>
-                    <h6>1000$</h6>
+                    {name && <h6>1000$</h6>}
                 </div>
             </div>
             <div id="footer">
