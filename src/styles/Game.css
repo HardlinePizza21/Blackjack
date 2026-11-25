@@ -4,3 +4,71 @@
   position: absolute;
   background-color: antiquewhite;
 }
+#game {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  color: white;
+  font-family: system-ui, sans-serif;
+}
+
+#dealer { text-align: center; }
+
+#players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.cards { display: flex; gap: 4px; justify-content: center; min-height: 68px; }
+
+.card {
+  width: 46px;
+  height: 66px;
+  background: white;
+  color: #111;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.card.red { color: #c0182b; }
+.card-back { background: repeating-linear-gradient(45deg, #7a1020, #7a1020 6px, #a3162c 6px, #a3162c 12px); border: 2px solid white; box-sizing: border-box; }
+
+.playerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  min-width: 130px;
+}
+.playerCard.me { border-color: gold; }
+.playerCard.turn { box-shadow: 0 0 12px 3px #4cf; }
+.playerCard.win, .playerCard.blackjack { background: rgba(20, 110, 40, 0.75); }
+.playerCard.lose { background: rgba(120, 20, 20, 0.75); }
+.playerCard .avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.playerCard .name { font-weight: bold; }
+.playerCard .total { font-size: 0.9rem; opacity: 0.85; }
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+.controls input { width: 90px; padding: 4px; }
+.controls .error { color: #ff8080; }
